@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Student List</title>
+</head>
+<body>
+<div>
+<div th:replace="fragment/header::header"></div>
+
+<div class="container">
+    <h2> List Of Students </h2>
+    <a href="/Student/new">Add Student</a>
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Student Number</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Middle Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Enrollment Date</th>
+        <th scope="col">CGPA</th>
+        <th scope="col">International</th>
+        <th scope="col"> &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;</th>
+    </tr>
+</thead>
+    <tbody>
+    <tr th:each="student,iter:${students}">
+        <th scope="row" th:text="${iter.count}"></th>
+        <th scope="row" th:text="${student.studentNumber}"></th>
+        <th scope="row" th:text="${student.firstName}"></th>
+        <th scope="row" th:text="${student.middleName}"></th>
+        <th scope="row" th:text="${student.lastName}"></th>
+        <th scope="row" th:text="${student.enrollmentdate}"></th>
+        <th scope="row" th:text="${student.cgpa}"></th>
+        <th scope="row" th:text="${student.isInternational}"></th>
+<!--        <a class="edit" href="/student/edit" style="color: darkblue">Edit</a></th> <th> &nbsp;&nbsp; <a class="danger" href="/student/delete" style="color: crimson">Delete</a>-->
+        <th><a th:href="@{/student/edit/{id}(id=${student.studentId})}"
+               class="btn btn-primary">Edit<i class="fas fa-user-edit ml-2"> </i></a></th>
+        <th><a th:href="@{/student/delete/{id}(id=${student.studentId})}"
+                class="btn btn-primary"> Delete<i class="fas fa-user-times ml-2"></i></a></th>
+
+    </tr>
+    <tr th:if="${numberOfStudents<1}">
+    <td colspan="8" style="text-align: center;"> No List students Available</td>
+    </tr>
+    </tbody>
+</table>
+
+<!--    <th:block layout:fragment="content">-->
+<!--        <h3>List of Books currently in our Catalogue</h3>-->
+<!--        <br/>-->
+<!--        <th:block style="font-size: 1em">-->
+<!--            <table class="table table-hover">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th scope="col">#</th>-->
+<!--                    <th scope="col">Book Title</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--&lt;!&ndash;                <tr th:each="book,iterStat : ${students}">&ndash;&gt;-->
+<!--           <tr th:each="student,iter:${students}">-->
+
+<!--&lt;!&ndash;                    th:onclick="@{document.location='/elibrary/book/edit/{bookid}'(bookid=${book.bookid})}">&ndash;&gt;-->
+<!--                    <th scope="row" th:text="${iterStat.count}"></th>-->
+<!--                    <td th:text="${student.title}"></td>-->
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </th:block>-->
+<!--    </th:block>-->
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+
+    <title>Edit Form</title>
+</head>
+<body>
+
+<div th:replace="fragment/header::header"></div>
+
+<div class="container" style="border-bottom-left-radius: 60%;width: 20%;border-bottom: 100px">
+    <h2>Add New Student Form</h2>
+    <form action="#" th:action="@{/newStudentForm}" th:object="${student}" method="post">
+        <fieldset>
+<!--            <legend>Legend</legend>-->
+            <div class="form-group row">
+                <label for="exampleInputEmail0">Student No.</label>
+                <input type="number" aria-required="true" name="studentNumber" class="form-control" id="exampleInputEmail0" placeholder="Enter your First name">
+            </div>
+            <div class="form-group row">
+                <label for="exampleInputEmail1">First Name</label>
+                <input type="text" aria-required="true" name="firstName" class="form-control" id="exampleInputEmail1"  placeholder="Enter your First name">
+            </div>
+            <div class="form-group">
+                <label for="exampleinpue2">Middle Name</label>
+                <input type="text" class="form-control" name="middleName" id="exampleinpue2" placeholder=" optional">
+            </div>
+            <div class="form-group">
+                <label for="exampleinput3">Last Name</label>
+                <input type="text" aria-required="true" name="lastName" class="form-control" id="exampleinput3" placeholder=" required">
+            </div>
+            <div class="form-group">
+                <label for="exampleinput4">CGPA</label>
+                <input type="float" class="form-control" name="cgpa" id="exampleinput4" placeholder=" optional">
+            </div>
+            <div class="form-group">
+                <label for="exampleinput5">Enrollement Date</label>
+                <input type="date" aria-required="true" name="enrollmentdate" class="form-control" id="exampleinput5" placeholder=" yyyy/MM/dd">
+            </div>
+
+
+            <fieldset class="form-group">
+                            <legend>Student Type</legend>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="isInternational" id="optionsRadios1" value="true">
+                        International </label>
+
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio"  class="form-check-input" name="isInternational" id="optionsRadios2" value="false" >
+                    US </label>
+                </div>
+
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </fieldset>
+    </form>
+</div>
+
+<footer >
+       <footer class="footer">
+        <div class="container">
+            <span class="text-muted">SE Assignment : : CS425-SWE, </span><span style="float:right;" class="text-muted">&copy; March 2020</span>
+        </div>
+    </footer>
+</footer>
+</body>
+
+</html>
