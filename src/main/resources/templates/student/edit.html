@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/main-layout}">
+      >
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -13,35 +12,39 @@
 <body>
 
 
-
+<div th:replace="fragment/header::header"></div>
 <div class="container">
     <h2>Edit Student Form</h2>
-    <form >
+    <form  th:object="${student}" action="#" th:action="@{/editStudentForm}"  method="post">
         <fieldset>
-
+            <div class="form-group row">
+                <label for="exampleInputEmail11">.</label>
+                <input type="hidden" aria-required="true" name="studentId" th:value="${student.studentId}" class="form-control" id="exampleInputEmail11" placeholder="">
+            </div>
+<!--            <p th:value="${student.studentId}"> </p>-->
             <div class="form-group row">
                 <label for="exampleInputEmail0">Student No.</label>
-                <input type="number" aria-required="true" name="studentNumber" class="form-control" id="exampleInputEmail0" placeholder="Enter your First name">
+                <input type="number" aria-required="true" name="studentNumber" th:value="${student.studentNumber}" class="form-control" id="exampleInputEmail0" placeholder="">
             </div>
             <div class="form-group row">
                 <label for="exampleInputEmail1">First Name</label>
-                <input type="text" aria-required="true" name="firstName" class="form-control" id="exampleInputEmail1"  placeholder="Enter your First name">
+                <input type="text" aria-required="true" name="firstName" th:value="${student.firstName}" class="form-control" id="exampleInputEmail1"  placeholder="Enter your First name">
             </div>
             <div class="form-group">
                 <label for="exampleinpue2">Middle Name</label>
-                <input type="text" class="form-control" name="middleName" id="exampleinpue2" placeholder=" optional">
+                <input type="text" class="form-control" name="middleName" th:value="${student.middleName}"  id="exampleinpue2" placeholder=" optional">
             </div>
             <div class="form-group">
                 <label for="exampleinput3">Last Name</label>
-                <input type="text" aria-required="true" name="lastName" class="form-control" id="exampleinput3" placeholder=" required">
+                <input type="text" aria-required="true" name="lastName" th:value="${student.lastName}" class="form-control" id="exampleinput3" placeholder=" required">
             </div>
             <div class="form-group">
                 <label for="exampleinput4">CGPA</label>
-                <input type="float" class="form-control" name="cgpa" id="exampleinput4" placeholder=" optional">
+                <input type="float" class="form-control" th:value="${student.cgpa}"  name="cgpa" id="exampleinput4" placeholder=" optional">
             </div>
             <div class="form-group">
                 <label for="exampleinput5">Enrollement Date</label>
-                <input type="date" aria-required="true" name="enrollmentdate" class="form-control" id="exampleinput5" placeholder=" yyyy/MM/dd">
+                <input type="date" aria-required="true" name="enrollmentdate" th:value="${student.enrollmentdate}" class="form-control" id="exampleinput5" placeholder=" yyyy/MM/dd">
             </div>
 
 
@@ -49,13 +52,13 @@
                 <legend>Student Type</legend>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="isInternational" id="optionsRadios1" value="true">
+                        <input type="radio" class="form-check-input"  name="isInternational" id="optionsRadios1" value="true">
                         International </label>
 
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input type="radio"  class="form-check-input" name="isInternational" id="optionsRadios2" value="false" >
+                        <input type="radio"  class="form-check-input"   name="isInternational" id="optionsRadios2" value="false" >
                         US </label>
                 </div>
 

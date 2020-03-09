@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,14 +35,35 @@ public class StudentController {
         modelAndView.setViewName("/student/list");
         return modelAndView;
     }
-
+    @GetMapping(value = "/student/search")
+    public ModelAndView searchStudent() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<Student> students = studentService.getStudents();
+       // students.stream().filter(student -> )
+        modelAndView.addObject("students", students);
+        modelAndView.addObject("numberOfStudents", students.size());
+        modelAndView.setViewName("/student/list");
+        return modelAndView;
+    }
     @GetMapping(value = "/Student/new")
     public String addNewStudent() {
         // model.addAttribute("student", new Student());
 
         return "student/new";
     }
+    @PostMapping(value = "/editStudentForm")
+    public String updateStudentToDB(@Valid @ModelAttribute("stud") Student student,BindingResult result, Model model) {
 
+        if (result.hasErrors()) {
+            System.out.println(" error");
+
+            return "student/edit";
+        }
+       studentService.saveStudent(student);
+
+
+        return "redirect:/student/list";
+    }
     @PostMapping(value = "/newStudentForm")
     public String saveNewStudentToDB(@Valid Student student, BindingResult result, Model model) {
 
